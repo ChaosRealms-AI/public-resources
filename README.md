@@ -200,9 +200,6 @@ except Exception as e:
 public-resources/
 ├── index.html              # 图床主界面
 ├── README.md               # 项目说明文档
-├── scripts/                # 图床相关脚本
-│   ├── README.md          # 脚本说明
-│   └── test-paste.html    # 粘贴功能测试页面
 ├── images/                 # 上传的图片存储目录
 │   ├── 2024-07-09/        # 按日期自动分类
 │   └── ...
