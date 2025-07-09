@@ -185,6 +185,28 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body>
@@ -209,6 +231,7 @@
             
             <div class="upload-area" onclick="document.getElementById('file-input').click()">
                 <div class="upload-text">🖼️ 拖拽图片到这里或点击选择</div>
+                <div class="upload-text" style="font-size: 14px; color: #999; margin-top: 10px;">📋 或者按 Ctrl+V 粘贴剪贴板中的图片</div>
                 <input type="file" id="file-input" class="file-input" multiple accept="image/*">
                 <button class="upload-button">选择图片</button>
             </div>
@@ -271,10 +294,60 @@
             }
         }
         
+        function showPasteNotification(fileCount) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #28a745;
+                color: white;
+                padding: 12px 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+                z-index: 1000;
+                animation: slideIn 0.3s ease-out;
+            `;
+            notification.textContent = `📋 检测到 ${fileCount} 张图片，正在上传...`;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease-in';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }, 2000);
+        }
+        
         document.addEventListener("DOMContentLoaded", loadSavedToken);
         
         const uploadArea = document.querySelector('.upload-area');
         const fileInput = document.getElementById('file-input');
+        
+        // 添加粘贴事件监听器
+        document.addEventListener('paste', (e) => {
+            const items = e.clipboardData.items;
+            if (!items) return;
+            
+            const files = [];
+            for (let item of items) {
+                if (item.type.startsWith('image/')) {
+                    const file = item.getAsFile();
+                    if (file) {
+                        files.push(file);
+                    }
+                }
+            }
+            
+            if (files.length > 0) {
+                e.preventDefault();
+                // 显示粘贴提示
+                showPasteNotification(files.length);
+                handleFiles(files);
+            }
+        });
         
         uploadArea.addEventListener('dragover', (e) => {
             e.preventDefault();

@@ -5,6 +5,7 @@
 ## ✨ 功能特性
 
 - 🖼️ **拖拽上传** - 支持拖拽图片到上传区域
+- 📋 **粘贴上传** - 支持 Ctrl+V 粘贴剪贴板中的图片
 - 📋 **一键复制** - 自动生成并复制图片链接
 - 📱 **移动端友好** - 响应式设计，支持手机访问
 - 🔒 **Token 保存** - 本地保存 GitHub Token，无需重复输入
@@ -14,6 +15,22 @@
 ## 🚀 在线访问
 
 访问地址：[https://chaosrealms-ai.github.io/public-resources/](https://chaosrealms-ai.github.io/public-resources/)
+
+## 📖 使用方法
+
+### 方法1：拖拽上传
+1. 直接将图片文件拖拽到上传区域
+2. 支持多文件同时上传
+
+### 方法2：点击选择
+1. 点击上传区域选择图片文件
+2. 支持多文件选择
+
+### 方法3：粘贴上传（新增功能）
+1. 复制图片到剪贴板（Ctrl+C 或右键复制）
+2. 在页面任意位置按 Ctrl+V 粘贴
+3. 支持从截图工具、浏览器、文件管理器等复制图片
+
 
 ## ⚙️ 快速配置 Token
 
@@ -75,7 +92,7 @@ https://raw.githubusercontent.com/ChaosRealms-AI/public-resources/main/images/20
 - **前端**: HTML5 + CSS3 + JavaScript (ES6+)
 - **存储**: GitHub API + GitHub Raw
 - **部署**: GitHub Pages
-- **功能**: 拖拽上传、Base64 编码、GitHub API 调用
+- **功能**: 拖拽上传、粘贴上传、Base64 编码、GitHub API 调用
 
 ## 📝 注意事项
 
