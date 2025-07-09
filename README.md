@@ -15,24 +15,30 @@
 
 访问地址：[https://chaosrealms-ai.github.io/public-resources/](https://chaosrealms-ai.github.io/public-resources/)
 
-## ⚙️ 使用步骤
+## ⚙️ 快速配置 Token
 
-### 1. 获取 GitHub Token
-1. 访问：[https://github.com/settings/tokens](https://github.com/settings/tokens)
-2. 点击 **"Generate new token"** → **"Generate new token (classic)"**
-3. 设置权限：
-   - ✅ **repo** (完整的仓库访问权限)
-4. 复制生成的 token
-
-### 2. 配置 Token
+### 方法1：浏览器控制台（推荐）
 1. 打开图床网站
-2. 在 Token 输入框中粘贴你的 GitHub Token
-3. Token 会自动保存到本地浏览器
+2. 按 F12 打开开发者工具
+3. 切换到 Console 标签
+4. 复制并粘贴以下代码：
 
-### 3. 上传图片
-1. 拖拽图片到上传区域，或点击选择文件
-2. 等待上传完成
-3. 复制生成的图片链接
+```javascript
+(function() {
+    const TOKEN = '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';
+    const tokenInput = document.getElementById('github-token');
+    if (tokenInput) {
+        tokenInput.value = TOKEN;
+        localStorage.setItem('github-token', TOKEN);
+        alert('Token 已自动配置完成！');
+    }
+})();
+```
+
+### 方法2：手动配置
+1. 访问：[https://github.com/settings/tokens](https://github.com/settings/tokens)
+2. 创建具有 `repo` 权限的 Token
+3. 在图床页面输入 Token
 
 ## 📁 目录结构
 
@@ -43,6 +49,7 @@ public-resources/
 │   └── ...
 ├── logos/           # 原有的 logo 资源
 ├── index.html       # 图床主界面
+├── token-helper.js  # Token 配置助手脚本
 └── README.md        # 项目说明
 ```
 

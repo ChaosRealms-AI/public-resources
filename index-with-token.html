@@ -255,12 +255,12 @@
         }
         
         function getGitHubToken() {
-            const token = document.getElementById("github-token").value.trim();
-            if (!token || token === "") {
+            const token = document.getElementById('github-token').value.trim();
+            if (!token) {
                 alert('请先配置 GitHub Personal Access Token！');
                 return null;
             }
-            localStorage.setItem("github-token", token);
+            localStorage.setItem('github-token', token);
             return token;
         }
         
@@ -271,7 +271,7 @@
             }
         }
         
-        document.addEventListener("DOMContentLoaded", loadSavedToken);
+        document.addEventListener('DOMContentLoaded', loadSavedToken);
         
         const uploadArea = document.querySelector('.upload-area');
         const fileInput = document.getElementById('file-input');
